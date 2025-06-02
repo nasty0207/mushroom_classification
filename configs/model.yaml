@@ -1,0 +1,25 @@
+# Model Configuration
+
+model:
+  name: "resnet50"  # Options: resnet18, resnet34, resnet50, efficientnet_b0, mobilenet_v2
+  pretrained: true
+  num_classes: 10  # Number of mushroom classes
+  dropout_rate: 0.2
+  feature_extract: true  # Only update the reshaped layer parameters
+  checkpoint_path: null  # Path to resume from checkpoint, null for fresh training
+
+  # Fine-tuning parameters
+  fine_tuning:
+    enable: true
+    freeze_backbone_epochs: 5  # Freeze backbone for N epochs, then unfreeze
+  
+  # Advanced settings for specific architectures
+  architecture_specific:
+    resnet:
+      replace_stride_with_dilation: [false, false, false]
+    efficientnet:
+      width_coefficient: 1.0
+      depth_coefficient: 1.0
+    mobilenet:
+      width_mult: 1.0
+      round_nearest: 8

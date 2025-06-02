@@ -1,0 +1,23 @@
+# Data Preprocessing Configuration
+
+preprocessing:
+  image_size: [224, 224]  # Height, Width
+  augmentation:
+    enable: true
+    horizontal_flip: true
+    vertical_flip: false
+    rotation_range: 15  # degrees
+    brightness_range: [0.8, 1.2]  # factor
+    contrast_range: [0.8, 1.2]  # factor
+    normalization:
+      mean: [0.485, 0.456, 0.406]  # ImageNet mean
+      std: [0.229, 0.224, 0.225]   # ImageNet std
+  
+data:
+  raw_data_path: "data/raw"
+  processed_data_path: "data/processed"
+  train_ratio: 0.7
+  val_ratio: 0.15
+  test_ratio: 0.15
+  random_seed: 42
+  class_mapping_file: "data/processed/class_mapping.json"

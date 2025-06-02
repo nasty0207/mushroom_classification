@@ -1,0 +1,53 @@
+# Training Configuration
+
+training:
+  max_epochs: 50
+  early_stopping_patience: 10
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  optimizer: "adam"  # Options: adam, sgd, adamw
+  scheduler:
+    name: "cosine"  # Options: cosine, step, reduce_on_plateau
+    step_size: 10  # For step scheduler
+    gamma: 0.1  # For step scheduler and reduce_on_plateau
+    patience: 5  # For reduce_on_plateau
+  
+  # Loss function configuration
+  loss:
+    name: "cross_entropy"  # Options: cross_entropy, focal
+    focal_loss_gamma: 2.0  # For focal loss
+    focal_loss_alpha: 0.25  # For focal loss
+    class_weights: null  # null for automatic calculation based on class distribution
+  
+  # Data loading
+  dataloader:
+    batch_size: 32
+    num_workers: 4
+    pin_memory: true
+    prefetch_factor: 2
+  
+# Experiment tracking
+experiment:
+  name: "mushroom-classifier"
+  tags: ["resnet", "mushrooms", "classification"]
+  log_model: true
+  mlflow:
+    tracking_uri: "./logs/mlflow"
+  tensorboard:
+    log_dir: "./logs/tensorboard"
+
+# Random seeds for reproducibility
+seed: 42
+
+# Devices configuration
+devices:
+  accelerator: "auto"  # Options: "cpu", "gpu", "tpu", "auto"
+  devices: 1  # Number of devices to use
+  precision: 32  # Options: 16, 32, 64, "bf16"
+
+# Directory paths
+directories:
+  data: "./data/processed"
+  checkpoints: "./models/checkpoints"
+  exported: "./models/exported"
+  logs: "./logs"
