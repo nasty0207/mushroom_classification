@@ -1,0 +1,49 @@
+# Main configuration file for mushroom classification project
+
+# Defaults for hydra
+defaults:
+  - model: resnet50
+  - preprocessing: default
+  - training: default
+  - _self_
+
+# Reproducibility
+seed: 42
+
+# Directories
+directories:
+  data: "./data/processed"
+  checkpoints: "./models/checkpoints"
+  exported: "./models/exported"
+  logs: "./logs"
+
+# Experiment tracking
+experiment:
+  name: "mushroom-classifier"
+  tags: ["resnet", "mushrooms", "classification"]
+  log_model: true
+  mlflow:
+    tracking_uri: "./logs/mlflow"
+  tensorboard:
+    log_dir: "./logs/tensorboard"
+
+# Devices configuration
+devices:
+  accelerator: "auto"  # Options: "cpu", "gpu", "tpu", "auto"
+  devices: 1  # Number of devices to use
+  precision: 32  # Options: 16, 32, 64, "bf16"
+
+# Inference settings
+inference:
+  batch_size: 32
+  use_onnx: false
+  export:
+    to_onnx: true
+    to_tensorrt: false
+    precision: "fp16"  # For TensorRT: "fp32", "fp16", or "int8"
+
+# Server settings
+server:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 1
