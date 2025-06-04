@@ -92,7 +92,7 @@ python -m mushroom_classifier.train trainer.max_epochs=50 model.hidden_sizes=[25
 Метрики обучения будут записываться в TensorBoard. Вы можете просмотреть их с помощью:
 
 ```bash
-tensorboard --logdir logs/tensorboard
+tensorboard --logdir plots/logs/tensorboard
 ```
 
 ## Отслеживание экспериментов с MLflow
@@ -211,9 +211,10 @@ mushroom_classifier/
 ├── data/                  # Директория данных
 │   ├── raw/               # Исходные файлы данных
 │   └── processed/         # Обработанные файлы данных
-├── logs/                  # Файлы логов
-│   ├── mlflow/            # Логи MLflow
-│   └── tensorboard/       # Логи TensorBoard
+├── plots/
+│   └── logs/              # Файлы логов
+│       ├── mlflow/        # Логи MLflow
+│       └── tensorboard/   # Логи TensorBoard
 ├── models/                # Файлы моделей
 │   ├── checkpoints/       # Контрольные точки модели
 │   └── exported/          # Экспортированные модели (ONNX, TensorRT)
