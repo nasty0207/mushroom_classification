@@ -185,7 +185,7 @@ curl -X POST http://localhost:8000/v2/models/mushroom_classifier/infer \
 
 3. **Обучение**:
    - Запуск `python -m mushroom_classifier.train`
-   - Проверка логов TensorBoard в `logs/tensorboard/`
+   - Проверка логов TensorBoard в `plots/logs/tensorboard/`
    - Проверка экспериментов MLflow по адресу `http://127.0.0.1:8080`
 
 4. **Экспорт модели**:
